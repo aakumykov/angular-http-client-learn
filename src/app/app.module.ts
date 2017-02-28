@@ -1,21 +1,24 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule }   from '@angular/forms';
+import { HttpModule, JsonpModule } from '@angular/http';
+
+import { AppComponent } from './app.component';
+import { HeroListComponent } from './toh/hero-list.component';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage
-  ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    JsonpModule,
   ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage
+  declarations: [ 
+  	AppComponent,
+  	HeroListComponent,
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  bootstrap:    [ AppComponent ]
 })
-export class AppModule {}
+
+export class AppModule {
+}
