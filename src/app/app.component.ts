@@ -8,22 +8,24 @@ import 'rxjs/add/operator/map';
 })
 
 export class AppComponent {
+	
+	constructor(private http: Http){}
+
 	//private requestUri = 'https://api.github.com/users/aakumykov/repos'
 	private requestUri = 'http://localhost/rus_gods.json'
-	private res: any;
-
-	constructor(private http: Http){}
+	public heroes;
 
 	ngOnInit(){
 		console.info('AppComponent.ngOnInit()');
 
 		this.http.get(this.requestUri)
-			//.map(res => res.json())
+			.map(res => res.json())
 			.subscribe(
 				res => {
 					console.info('----- УСПЕХ -----');
 					console.info(res);
 					console.info('------------------');
+					this.heroes = res;
 				},
 				error => {
 					console.info('----- ОШИБКА -----');
@@ -32,5 +34,9 @@ export class AppComponent {
 				},
 				() => console.info('~~~~~~~ запрос выполнен ~~~~~~~')
 			);
+
+		console.log('------------ this.heroes -----------');
+		console.log(this.heroes);
+		console.log('------------------------------------');
 	}
 }
